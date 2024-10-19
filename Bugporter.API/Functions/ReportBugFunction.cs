@@ -5,17 +5,17 @@ using Microsoft.Extensions.Logging;
 
 namespace Bugporter.API.Functions
 {
-    public class Function1
+    public class ReportBugFunction
     {
         private readonly ILogger _logger;
 
-        public Function1(ILoggerFactory loggerFactory)
+        public ReportBugFunction(ILoggerFactory loggerFactory)
         {
-            _logger = loggerFactory.CreateLogger<Function1>();
+            _logger = loggerFactory.CreateLogger<ReportBugFunction>();
         }
 
-        [Function("Function1")]
-        public HttpResponseData Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequestData req)
+        [Function("ReportBugFunction")]
+        public HttpResponseData Run([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "bugs")] HttpRequestData req)
         {
             _logger.LogInformation("C# HTTP trigger function processed a request.");
 
